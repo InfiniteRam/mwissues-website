@@ -77,6 +77,7 @@
             <li>Create and edit issues directly in Unity Editor</li>
             <li>Allow play testers to report issues without leaving the game</li>
             <li>A screenshot can be attached to an issue</li>
+            <li>View the issue list from a web page (without Unity)</li>
             <li>Works with Unity Personal and Professional</li>
             <li>Supports 2D and 3D projects</li>
             <li>Requires Unity 5.3 or newer</li>
@@ -140,30 +141,46 @@
             <h1>Limitations</h1>
           </div>
           <p>
-            To use this tool with your project, you will have to setup an issue server using NodeJS and MySQL. You can learn more about that in the <a href="server-setup.html">Server setup</a> documentation.
+            To use this tool with your project, you will have to setup an issue server using NodeJs and MySql. You can learn more about that in the <a href="server-setup.html">Server setup</a> documentation.
           </p>
           <p>
             MwIssues is a collaboration tool that does not replace more advanced issue tracking systems. It is intended for users working directly on Unity scenes, such as a level designer, and will likely be less useful for programmers.
           </p>
           <p>
-            The report system is intended for internal play tests and QA, and should not be used for end-user bug reports... unless you want thousands of new issues in your scenes.
+            The report system is intended for internal play tests and QA, and should not be used for end-user bug reports. A better report system for end-users is under consideration.
           </p>
+
+
+          <div class="page-header">
+            <h1>Changelog</h1>
+          </div>
+          <h3>Version 1.0</h3>
+          <ul>
+            <li>Initial release.</li>
+          </ul>
 
           <div class="page-header">
             <h1>Roadmap</h1>
           </div>
-          <h3>Planned features</h3>
+          <h3>Version 1.1</h3>
           <ul>
-            <li>New authentication system using MySQL instead of a configuration file.</li>
-            <li>More documentation.</li>
+            <li>Administration tools (rename a scene globally...).</li>
+            <li>Touch support (instead of mouse emulation).</li>
+            <li>Detect update conflicts.</li>
+            <li>Edit and delete issues from the web interface</li>
           </ul>
-          <h3>Features under consideration</h3>
+
+          <h3>Ideas: Likely</h3>
           <ul>
-            <li>PHP/MySQL server as an alternative for NodeJS.</li>
             <li>A new way to handle bug reports from testers, potentially allowing end-user bug reports.</li>
+            <li>Keep issues history.</li>
+          </ul>
+
+          <h3>Ideas: Unlikely</h3>
+          <ul>
+            <li>PHP/MySql server as an alternative for NodeJs.</li>
             <li>Automatically update the issue list every few minutes.</li>
-            <li>Keep issues update history.</li>
-            <li>Get the package working for earlier versions of Unity. It could be done if I find a replacement for JSONUtility.</li>
+            <li>Get the package working for earlier versions of Unity (it could be done if I find a replacement for JSONUtility).</li>
           </ul>
         </div>
       </div>
