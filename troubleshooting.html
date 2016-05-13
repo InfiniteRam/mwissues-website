@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <meta name="description" content="">
+    <meta name="author" content="Bastien Brunnenstein">
+    <link rel="icon" href="favicon.png">
+
+    <title>MwIssues - Troubleshooting</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap theme -->
+    <link href="css/bootstrap-theme.min.css" rel="stylesheet">
+
+    <link href="css/mwissues.css" rel="stylesheet">
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  </head>
+
+  <body role="document">
+
+    <!-- Fixed navbar -->
+    <nav class="navbar navbar-inverse navbar-static-top">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="index.html"><i class="mwissues-logo"></i>MwIssues</a>
+        </div>
+
+        <div id="navbar" class="navbar-collapse collapse">
+          <ul class="nav navbar-nav">
+            <li><a href="index.html">Home</a></li>
+            <li class="dropdown active">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Documentation <span class="caret"></span></a>
+              <ul class="dropdown-menu">
+                <li><a href="user-guide.html">User guide</a></li>
+                <li><a href="server-setup.html">Server setup guide</a></li>
+                <li><a href="client-setup.html">Client setup guide</a></li>
+                <li class="active"><a href="#">Troubleshooting</a></li>
+              </ul>
+            </li>
+          </ul>
+          <ul class="nav navbar-nav navbar-right">
+            <li><a href="https://www.assetstore.unity3d.com/#!/content/62545">Asset store</a></li>
+            <li><a href="contact.html">Contact</a></li>
+          </ul>
+        </div><!--/.nav-collapse -->
+      </div>
+    </nav>
+
+    <div class="container">
+
+      <div class="row">
+        <div class="col-md-3 col-md-push-9">
+          <h2>Navigation</h2>
+          <ul class="nav">
+            <li><a href="#">Link</a></li>
+          </ul>
+        </div>
+
+        <div class="col-md-9 col-md-pull-3">
+          <div class="page-header">
+            <h1>Troubleshooting</h1>
+          </div>
+          <p>
+            This page will guide you into finding and solving errors.
+          </p>
+
+          <h3>Check your configuration</h3>
+          <p>
+            Make sure your settings are correctly set. Check your server URL for typo errors.
+          </p>
+
+          <h3>Proxies</h3>
+          <p>
+            If your company is using a proxy, make sure that you can connect to the server.<br>
+            If the server can be accessed from the intranet, then you should have no problem connecting to it, but if you are using an external server then you must configure your computer to use the proxy.<br>
+            Unity is using cURL, so it is affected the following environment variables:
+            <ul>
+              <li><code>http_proxy</code> : Proxy address for HTTP protocol</li>
+              <li><code>https_proxy</code> : Proxy address for HTTPS protocol</li>
+              <li><code>all_proxy</code> : Proxy address for both HTTP and HTTPS</li>
+            </ul>
+            If your server is in LAN but you are using a proxy, you may have to use:
+            <ul>
+              <li><code>no_proxy</code> : Comma separated list of hosts that should not go through the proxy</li>
+            </ul>
+          </p>
+
+
+          <h3>Client errors</h3>
+          <h4>Connection refused / Timed out</h4>
+          <p>
+            The client cannot connect to the server.<br>
+            Please make sure that the server is up and running, and that the URL and port in the settings is correct. Check that your firewall is not blocking the connexion.
+          </p>
+
+          <h4>403 Forbidden</h4>
+          <p>
+            Permission denied, your are not allowed to perform this operation.<br>
+            If this is unexpected, make sure your API key is valid and correctly written.
+          </p>
+
+          <h4>500 Internal Server Error</h4>
+          <p>
+            Something went wrong with the server.<br>
+            If you have access to the server, check the logs for more details and refer to the Server errors TODO section. Otherwise, contact your administrator.
+          </p>
+
+          <h4>necessary data rewind wasn't possible</h4>
+          <p>
+            If you are having this error, then you are probably having a proxy error. For this kind of error, please read Proxies TODO.<br>
+            It is also possible that you are having a redirection error. For example, if your server requires you to use <code>www.</code> or <code>https://</code> instead of <code>http://</code>, you may receive this error. Please ensure that your settings are correct in this regard.
+          </p>
+
+
+          <h3>Server errors</h3>
+          <h4>no such file or directory</h4>
+          <p>
+            Check if you can find <code>/screenshot/</code> in the file path. If you do, it means someone tried to download a screenshot that has been deleted.
+          </p>
+
+          <h4>ECONNREFUSED</h4>
+          <p>
+            The server cannot connect to the MySQL database, make sure that the database server is up and running and can be accessed.
+          </p>
+        </div>
+      </div>
+
+      <hr>
+
+      <footer>
+        <p>Copyright &copy; 2016 Bastien Brunnenstein</p>
+      </footer>
+    </div>
+
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="js/bootstrap.min.js"></script>
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-77539542-2', 'auto');
+  ga('send', 'pageview');
+
+</script>
+  </body>
+</html>

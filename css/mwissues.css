@@ -1,0 +1,13 @@
+/*
+ * Copyright (c) 2016 Bastien Brunnenstein
+ */
+
+.mwissues-logo {
+  display: inline-block;
+  width: 32px;
+  height: 32px;
+  background-image: url('../img/logo32.png');
+  margin-top: -8px;
+  margin-bottom: -9px;
+  margin-right: 8px;
+}

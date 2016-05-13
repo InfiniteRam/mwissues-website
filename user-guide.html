@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <meta name="description" content="">
+    <meta name="author" content="Bastien Brunnenstein">
+    <link rel="icon" href="favicon.png">
+
+    <title>MwIssues - User guide</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap theme -->
+    <link href="css/bootstrap-theme.min.css" rel="stylesheet">
+
+    <link href="css/mwissues.css" rel="stylesheet">
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  </head>
+
+  <body role="document">
+
+    <!-- Fixed navbar -->
+    <nav class="navbar navbar-inverse navbar-static-top">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="index.html"><i class="mwissues-logo"></i>MwIssues</a>
+        </div>
+
+        <div id="navbar" class="navbar-collapse collapse">
+          <ul class="nav navbar-nav">
+            <li><a href="index.html">Home</a></li>
+            <li class="dropdown active">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Documentation <span class="caret"></span></a>
+              <ul class="dropdown-menu">
+                <li class="active"><a href="#">User guide</a></li>
+                <li><a href="server-setup.html">Server setup guide</a></li>
+                <li><a href="client-setup.html">Client setup guide</a></li>
+                <li><a href="troubleshooting.html">Troubleshooting</a></li>
+              </ul>
+            </li>
+          </ul>
+          <ul class="nav navbar-nav navbar-right">
+            <li><a href="https://www.assetstore.unity3d.com/#!/content/62545">Asset store</a></li>
+            <li><a href="contact.html">Contact</a></li>
+          </ul>
+        </div><!--/.nav-collapse -->
+      </div>
+    </nav>
+
+    <div class="container">
+
+      <div class="row">
+        <div class="col-md-3 col-md-push-9">
+          <h2>Navigation</h2>
+          <ul class="nav">
+            <li><a href="#">Link</a></li>
+          </ul>
+        </div>
+
+        <div class="col-md-9 col-md-pull-3">
+          <div class="page-header">
+            <h1>User guide</h1>
+          </div>
+          <p>
+            This page will present you the features of MwIssues and how to use them.
+            If you want to learn how to install MwIssues into your project, you should read <a href="server-setup.html">Server setup guide</a> and <a href="client-setup.html">Client setup guide</a> pages instead.
+          </p>
+
+          <h3>Issues</h3>
+          <p>
+            Issues are composed of a few fields that are listed below.
+          </p>
+          <p>
+            <b>Title:</b> Very short description that will be easily visible to everyone.
+          </p>
+          <p>
+            <b>Description:</b> A more detailed description of the issue.
+          </p>
+          <p>
+            <b>State:</b>
+            <ul>
+              <li>New (Star)</li>
+              <li>Confirmed (Exclamation mark)</li>
+              <li>Pending (Question mark)</li>
+              <li>Resolved (Check mark)</li>
+            </ul>
+          </p>
+          <p>
+            <b>Category:</b><br>
+            Categories have no meaning other than the one your team gives them.<br>
+            For example, you could say that Red, Orange and Yellow are High, Medium and Low priority, respectively, or you could say that Blue issues are level design issues.
+            <ul>
+              <li>Red</li>
+              <li>Orange</li>
+              <li>Yellow</li>
+              <li>Green</li>
+              <li>Cyan</li>
+              <li>Blue</li>
+              <li>Purple</li>
+            </ul>
+          </p>
+          <p>
+            <b>Reporter:</b> The username of whom created this issue.
+          </p>
+          <p>
+            <b>Assignee:</b> The username of whom is enthrusted to resolve this issue.
+          </p>
+
+          <h3>User settings</h3>
+          <p>
+            When you first launch a project using MwIssues, you should make sure it is configured properly.<br>
+            First of all, you can access the Issue Manager from Unity's menu bar:
+          </p>
+          <pre>Window > Issue Manager</pre>
+          <p>
+            This Issue Manager is used for almost everything related to issues. If you ever close it, you can always re-open it from the menu bar.<br>
+            Now, we want to open the configuration file. You can just press the <code>Config</code> button in the Issue Manager and it will be selected and opened into the Inspector window.
+            <p><img src="img/connect.png" alt="Connect screen" /></p>
+            You can also access the configuration file directly by opening the following asset:
+          </p>
+          <pre>Assets/MwIssues/Config.asset</pre>
+          <p>
+            The configuration file contains two categories.
+            <ul>
+              <li><b>Project settings:</b> This part should already be filled.</li>
+              <li><b>User settings:</b> This is the part we want to edit.</li>
+            </ul>
+            <p><img src="img/config.png" alt="Config asset" /></p>
+            <ul>
+              <li><b>Username:</b> Your personal identifier.</li>
+              <li><b>API Key:</b> Your (or your team's) security key.</li>
+            </ul>
+            Your administrator should have provided you with an username and an API key.<br>
+            By default, users without a key are only allowed to read issues, but are not allowed to create or edit them.<br>
+            Please make sure you keep your key private.<br>
+            When you are done, press the <code>Reload</code> button before going back to the Issue Manager to make sure your new settings are used.<br>
+            On the Issue Manager, press <code>Connect</code> to connect to the server.
+          </p>
+
+          <h3>User interface</h3>
+          <h4>Issue list</h4>
+          <p><img src="img/normal.png" alt="Issue list" /></p>
+          <p>
+            <i>Control buttons</i>
+            <ul>
+              <li><b>Refresh list from server:</b> Download the latest list of issues from the server.</li>
+              <li><b>Create new issue:</b> See TODO Creating new issues TODO.</li>
+            </ul>
+          </p>
+          <p>
+            <i>Issue list filters</i>
+            <ul>
+              <li><b>Show issues in scene:</b> Check this box to display active scene's issues in Unity's scene view.</li>
+              <li><b>Listed issues:</b> Select the issue states that you want to see.</li>
+              <li><b>Listed categories:</b> Select the issue categories that you want to see.</li>
+              <li><b>Only show issues from active scene:</b> Issues from other scenes are hidden.</li>
+              <li><b>Only show issues assigned to me:</b> Issues are only visible if the <code>Assignee</code> field match your username.</li>
+            </ul>
+          </p>
+          <p>
+            <i>Issue list</i><br>
+            This list shows the icon, the identifier and the title of each issue that match the filters. Click on an issue in the list to select it.
+          </p>
+
+          <h4>Issues in scene</h4>
+          <p>
+            If you checked <code>Show issues in scene</code>, the issues will be displayed in your scene view. Otherwise, only the selected issue will be visible. Click on a visible issue to select it.
+          </p>
+
+          <h4>Creating new issues</h4>
+          <p>
+            When you click the <code>Create new issue</code> button, you will be prompted to click on the scene view to select where your issue will be located. Please note that you can only use the Scene view and not the Game view.
+            <p><img src="img/create.png" alt="Creating issue" /></p>
+            When you click on the scene, a grey icon will appear to show where your issue will be located.<br>
+            You can now fill your new issue's title with an optional description, and select it's state and category.
+            <ul>
+              <li><b>Reporter:</b> Your username, since you are the one creating the issue.</li>
+              <li><b>Assignee:</b> User assigned to the issue. Press <code>Me</code> to assign it to yourself.</li>
+              <li><b>Show issue in scene:</b> Focus the Scene view on this issue.</li>
+              <li><b>Move camera to report position:</b> Move the Scene view camera to the position it was in when the issue was created.</li>
+              <li><b>Preview screenshot:</b> A screenshot is taken when you create an issue. Click this button to preview it.</li>
+              <li><b>Upload scene screenshot:</b> Check this box to attach the screenshot with the issue. If you don't check this button the issue will not have a screenshot attached.</li>
+              <li><b>Create issue:</b> Click this button to confirm the creation of the issue.</li>
+            </ul>
+          </p>
+
+          <h4>Viewing and editing issues</h4>
+          <p>
+            Select an issue to view the details and edit it.
+            <p><img src="img/update.png" alt="Editing issue" /></p>
+            The issue edition screen is very similar to the issue creation screen. You can change the title, the description, the category and the state of the issue from this screen.
+            <ul>
+              <li><b>Reporter:</b> User who reported this issue.</li>
+              <li><b>Assignee:</b> User assigned to the issue. Press <code>Me</code> to assign it to yourself.</li>
+              <li><b>Show issue in scene:</b> Focus the Scene view on this issue.</li>
+              <li><b>Move camera to report position:</b> Move the Scene view camera to the position it was in when the issue was created.</li>
+              <li><b>Preview screenshot:</b> Click this button to download and view a screenshot.</li>
+              <li><b>Update issue:</b> Click this button to confirm your modifications.</li>
+              <li><b>Delete issue:</b> Click this button to delete this issue. Please note that you should only delete invalid issues. When you fix an issue, you should change it's state to <code>Closed</code> instead.</li>
+            </ul>
+          </p>
+
+          <h4>Scene view</h4>
+          <p>
+            If you have checked <code>Show issue in scene</code>, you can view and select issues directly in the Scene view.
+            <p><img src="img/scene.png" alt="Scene view" /></p>
+          </p>
+        </div>
+      </div>
+
+      <hr>
+
+      <footer>
+        <p>Copyright &copy; 2016 Bastien Brunnenstein</p>
+      </footer>
+    </div>
+
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="js/bootstrap.min.js"></script>
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-77539542-2', 'auto');
+  ga('send', 'pageview');
+
+</script>
+  </body>
+</html>
