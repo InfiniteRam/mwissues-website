@@ -111,6 +111,73 @@ cd mwissues-nodejs-server</pre>
             If you want to customize the configuration, edit the file <code>config.json</code> with your favorite text editor, then run the following command to restart the server.
           </p>
 <pre>sudo service mwissues restart</pre>
+
+          <h3>Setup on Windows</h3>
+          <p>
+            TODO
+          </p>
+
+          <h3>Server configuration</h3>
+          <p>
+            The server configuration can be modified by editing the <code>config.json</code> file. You have to restart the server after modifying this file.
+          </p>
+
+
+          <h4>Global options</h4>
+          <p>
+            <ul>
+              <li><code>port</code>: The port number the server is listening on. Default: 3000</li>
+              <li><code>maxScreenshotSize</code>: The maximum size of a single screenshot. Default: "5mb"</li>
+            </ul>
+          </p>
+
+          <h4>Database</h4>
+          <p>
+            For now, only the <code>mysql</code> database is supported. The MySql configuration is controlled by the <code>mysqlParams</code> table.
+            <ul>
+              <li><code>host</code>: The address of the MySql server. Default: "locahost"</li>
+              <li><code>port</code>: The port of the MySql server. Default: 3306</li>
+              <li><code>database</code>: The database that will be used. Default: "mwissues"</li>
+              <li><code>user</code>: The MySql user that will be used. Default: "mwissues"</li>
+              <li><code>password</code>: The password associated to this user.</li>
+            </ul>
+            For more MySql options, please consult the <a href="https://github.com/felixge/node-mysql">node-mysql</a> web page.
+          </p>
+
+          <h4>Authentication models</h4>
+          <p>
+            For now, only the <code>apikey</code> model is supported.<br>
+            The API key authenticator use the <code>apikeys</code> table to control the access.
+          </p>
+          <p>
+            In this table, keys are API keys (example: <code>facc74b2418cf6c5</code>) and values are permissions.<br>
+            Permissions are described by a table of strings (example: <code>["view", "create", "update"]</code>).<br>
+            Possible values are:
+            <ul>
+              <li><code>admin</code>: Administrator access. Administrators have all rights.</li>
+              <li><code>view</code>: Allowed to view the issue list and individual issues.</li>
+              <li><code>create</code>: Allowed to create new issues.</li>
+              <li><code>update</code>: Allowed to update existing issues.</li>
+              <li><code>delete</code>: Allowed to delete existing issues.</li>
+            </ul>
+          </p>
+          <p>
+            The special key <code>anonymous</code> can be used to give some permissions to anonymous users.
+          </p>
+          <p>
+            <b>Important!</b> API keys are not passwords, and as such they are not automatically encrypted. API keys should be generated and should not be re-used for another purpose. You should not use the default API keys either.
+          </p>
+          <p>
+            You can configure API keys the way that suits you the best.<br>
+            For example, you can use one administrator key, one key shared by the development team with view, create and update access, and one key for the in-game reporter that can only create issues.
+          </p>
+
+          <h3>Increasing security</h3>
+          <p>
+            MwIssues aim to only be used internally by small teams, and so does not have a high level of security by default.<br>
+            If you need increased security, you can enable TLS to access the server through Https instead of Http.<br>
+            This is not supported by default, and explaining TLS is beyond the scope of this document, but the file <code>index.js</code> can easily be modified to use TLS. You can learn how to do so by reading the <a href="#">TODO Express JS official documentation</a>.
+          </p>
         </div>
       </div>
 

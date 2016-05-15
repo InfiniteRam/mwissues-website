@@ -219,6 +219,62 @@
             If you have checked <code>Show issue in scene</code>, you can view and select issues directly in the Scene view.
             <p><img src="img/scene.png" alt="Scene view" /></p>
           </p>
+
+          <h4>Screenshot viewer</h4>
+          <p>
+            Press the <b>View screenshot</b> button on your issue to view the attached screenshot.<br>
+            Click anywhere in the viewer to toggle between real image size and image scaled to fit in the window.
+          </p>
+
+
+          <h3>Reporter</h3>
+          <p>
+            The Reporter prefab is a tool that can be integrated in development build of your game, allowing developers and play-testers to quickly report issues without leaving the game application.<br>
+            For a setup guide, please consult the <a href="client-setup.html">Client setup page</a>.
+          </p>
+          <p>
+            You can access the reporter in-game by either pressing a key (F11 by default), or by clicking on the MwIssues logo, which should be on the top left of the screen.<br>
+            To locate the issue, you can either put your mouse cursor over the issue (when pressing the report key) or click on the screen after pressing the MwIssues logo, a small cursor will appear to show you where your issue is located.<br>
+            If you don't like the position, you can press the report key or click on the logo again to update it without leaving the reporter.
+          </p>
+          <p>
+            The only required field in the reporter is the <b>Title</b>. To quickly report an issue, you can just enter a short title and press the <b>Send issue</b> button to validate.<br>
+            Optionally you can also enter a longer description in the <b>Description</b> field.
+          </p>
+          <p>
+            When starting a report, a screenshot is taken. If you want a screenshot to be attached to the issue, check the camera icon above the reporter.<br>
+            This option can be enforced, in that case the camera icon won't appear.
+          </p>
+          <p>
+            You can also select the issue category by selecting one of the seven colors above the reporter.<br>
+            This option can also be enforced, in that case the category selection won't appear.
+          </p>
+          <p>
+            If you want to cancel your report, press the <b>Cancel</b> button.
+          </p>
+
+
+          <h3>Web issue list</h3>
+          <p>
+            You can access the issue list by accessing the server address directly in your internet navigator. You need to specify the port in the URL.
+          </p>
+<pre>http://server-address:port/
+Example for local server: http://localhost:3000/</pre>
+
+          <h4>Autentication form</h4>
+          <p>
+            When you get on the page, you will see an authentication form prompting you for your <b>User name</b> and <b>API Key</b>.<br>
+            You can also choose to check the <b>Remember my credentials</b> checkbox if you don't want to enter your credentials every time.<br>
+            Please note that your credentials are saved unencrypted, so only use this option if you are on your own computer.<br>
+            You can also access the issue list anonymously if the server settings allows it.
+          </p>
+
+          <h4>Filters</h4>
+          <p>
+            When viewing the issue list, you can use the filters to control which issues are shown.<br>
+            Click on a state or a category (color) to toggle it. You can also double-click a state or a category to enable exclusively this state or category.<br>
+            You can also filter the issues by Scene, Reporter or Assignee. The special option <b>Only show unassigned issues</b> can be found in the Assignee filter.
+          </p>
         </div>
       </div>
 
