@@ -67,7 +67,10 @@
         <div class="col-md-3 col-md-push-9">
           <h2>Navigation</h2>
           <ul class="nav">
-            <li><a href="#">Link</a></li>
+            <li><a href="#setup-linux">Setup on Linux</a></li>
+            <li><a href="#setup-windows">Setup on Windows</a></li>
+            <li><a href="#server-config">Server configuration</a></li>
+            <li><a href="#security">Increasing security</a></li>
           </ul>
         </div>
 
@@ -81,7 +84,7 @@
           </p>
 
 
-          <h3>Setup on Linux</h3>
+          <h3 id="setup-linux">Setup on Linux</h3>
           <p>
             In this section, you will learn how to install MwIssues NodeJs server the easy way. I used a RaspberryPi with Debian, but it should be very similar for any other Linux distribution.<br>
             This is a very basic installation. You can also install everything yourself if you want more control, the scripts are straightforward.
@@ -112,12 +115,12 @@ cd mwissues-nodejs-server</pre>
           </p>
 <pre>sudo service mwissues restart</pre>
 
-          <h3>Setup on Windows</h3>
+          <h3 id="setup-windows">Setup on Windows</h3>
           <p>
             TODO
           </p>
 
-          <h3>Server configuration</h3>
+          <h3 id="server-config">Server configuration</h3>
           <p>
             The server configuration can be modified by editing the <code>config.json</code> file. You have to restart the server after modifying this file.
           </p>
@@ -127,7 +130,7 @@ cd mwissues-nodejs-server</pre>
           <p>
             <ul>
               <li><code>port</code>: The port number the server is listening on. Default: 3000</li>
-              <li><code>maxScreenshotSize</code>: The maximum size of a single screenshot. Default: "5mb"</li>
+              <li><code>maxScreenshotSize</code>: The maximum size of a single screenshot. Default: 5242880 (5MB)</li>
               <li><code>deleteResolvedIssuesAfterDays</code>: Number of days after which resolved issues are automatically deleted. Default: 15. Set to -1 to disable</li>
             </ul>
           </p>
@@ -173,7 +176,7 @@ cd mwissues-nodejs-server</pre>
             For example, you can use one administrator key, one key shared by the development team with view, create and update access, and one key for the in-game reporter that can only create issues.
           </p>
 
-          <h3>Increasing security</h3>
+          <h3 id="security">Increasing security</h3>
           <p>
             MwIssues aim to only be used internally by small teams, and so does not have a high level of security by default.<br>
             If you need increased security, you can enable TLS to access the server through Https instead of Http.<br>

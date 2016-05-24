@@ -67,7 +67,10 @@
         <div class="col-md-3 col-md-push-9">
           <h2>Navigation</h2>
           <ul class="nav">
-            <li><a href="#">Link</a></li>
+            <li><a href="#general">General</a></li>
+            <li><a href="#proxy">Proxies</a></li>
+            <li><a href="#client-err">Client errors</a></li>
+            <li><a href="#server-err">Server errors</a></li>
           </ul>
         </div>
 
@@ -79,12 +82,12 @@
             This page will guide you into finding and solving errors.
           </p>
 
-          <h3>Check your configuration</h3>
+          <h3 id="general">General</h3>
           <p>
             Make sure your settings are correctly set. Check your server URL for typo errors.
           </p>
 
-          <h3>Proxies</h3>
+          <h3 id="proxy">Proxies</h3>
           <p>
             If your company is using a proxy, make sure that you can connect to the server.<br>
             If the server can be accessed from the intranet, then you should have no problem connecting to it, but if you are using an external server then you must configure your computer to use the proxy.<br>
@@ -101,7 +104,7 @@
           </p>
 
 
-          <h3>Client errors</h3>
+          <h3 id="client-err">Client errors</h3>
           <h4>Connection refused / Timed out</h4>
           <p>
             The client cannot connect to the server.<br>
@@ -111,13 +114,23 @@
           <h4>403 Forbidden</h4>
           <p>
             Permission denied, your are not allowed to perform this operation.<br>
-            If this is unexpected, make sure your API key is valid and correctly written.
+            Make sure your API key is valid and correctly written.
+          </p>
+
+          <h4>404 Not Found</h4>
+          <p>
+            This error is likely to happen if you enter the URL of a server that is not a MwIssues server.
+          </p>
+
+          <h4>413 Request Entity Too Large</h4>
+          <p>
+            You are trying to upload a screenshot that is larger than the maximum file size allowed by the server. The server configuration can be changed to accept larger screenshots if needed.
           </p>
 
           <h4>500 Internal Server Error</h4>
           <p>
             Something went wrong with the server.<br>
-            If you have access to the server, check the logs for more details and refer to the Server errors TODO section. Otherwise, contact your administrator.
+            If you have access to the server, check the logs for more details and refer to the <em>Server errors</em> section below. Otherwise, contact your administrator.
           </p>
 
           <h4>necessary data rewind wasn't possible</h4>
@@ -127,15 +140,20 @@
           </p>
 
 
-          <h3>Server errors</h3>
+          <h3 id="server-err">Server errors</h3>
+          <p>
+            Server errors can be accessed in <code>exceptions.log</code>. Server logs can be accessed in <code>mwissues.log</code>. Please note that only fatal errors are logged in the former, non-fatal errors can be found in the latter log file.<br>
+            When asking for support due to an error, please copy the corresponding error message and backtrace in your mail to help us identify the problem.
+          </p>
+
           <h4>no such file or directory</h4>
           <p>
-            Check if you can find <code>/screenshot/</code> in the file path. If you do, it means someone tried to download a screenshot that has been deleted.
+            Check if there is <code>/screenshot/</code> in the file path. If there is, it means someone tried to download a screenshot that has been deleted from the server.
           </p>
 
           <h4>ECONNREFUSED</h4>
           <p>
-            The server cannot connect to the MySQL database, make sure that the database server is up and running and can be accessed.
+            The server cannot connect to the MySQL database, make sure that the database server is up and running and that the credentials in your configuration file are correct.
           </p>
         </div>
       </div>
