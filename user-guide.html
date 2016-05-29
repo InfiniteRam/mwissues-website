@@ -72,6 +72,7 @@
             <li><a href="#ui">User interface</a></li>
             <li><a href="#reporter">Reporter</a></li>
             <li><a href="#web-list">Web issue list</a></li>
+            <li><a href="#release">Releasing your game</a></li>
           </ul>
         </div>
 
@@ -281,6 +282,17 @@ Example for local server: http://localhost:3000/</pre>
             <p><img class="well well-sm" src="img/filter.png" alt="Filters" /></p>
             Click on a state or a category (color) to toggle it. You can also double-click a state or a category to enable exclusively this state or category.<br>
             You can also filter the issues by Scene, Reporter or Assignee. The special option <b>Only show unassigned issues</b> can be found in the Assignee filter.
+          </p>
+
+
+          <h3 id="release">Releasing your game</h3>
+          <p>
+            MwIssues can be used for internal play tests, but it is not recommended to use it in your public releases.
+          </p>
+          <p>
+            In order to reduce your build size and prevent your players from accessing the reporter, MwIssues must be removed from your build when releasing your game.<br>
+            If you are using the Reporter prefab, remove it from your scenes.<br>
+            To fully remove the scripts and assets from your build, delete the entire MwIssues folder from your project before building.
           </p>
         </div>
       </div>

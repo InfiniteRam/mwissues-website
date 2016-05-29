@@ -69,6 +69,7 @@
           <ul class="nav">
             <li><a href="#setup-linux">Setup on Linux</a></li>
             <li><a href="#setup-windows">Setup on Windows</a></li>
+            <li><a href="#testing">Testing</a></li>
             <li><a href="#server-config">Server configuration</a></li>
             <li><a href="#security">Increasing security</a></li>
           </ul>
@@ -80,14 +81,15 @@
           </div>
           <p>
             This page will guide you into running a server for MwIssues.<br>
-            The server code is free and open source, and can be found <a href="https://github.com/InfiniteRam/mwissues-nodejs-server">here on GitHub</a>.
+            The server code is free and open source, and can be found <a href="https://github.com/InfiniteRam/mwissues-nodejs-server">here on GitHub</a>.<br>
+            You can install the server before purchasing the editor extension.
           </p>
 
 
           <h3 id="setup-linux">Setup on Linux</h3>
           <p>
             In this section, you will learn how to install MwIssues NodeJs server the easy way. I used a RaspberryPi with Debian, but it should be very similar for any other Linux distribution.<br>
-            This is a very basic installation. You can also install everything yourself if you want more control, the scripts are straightforward.
+            This is a very basic installation. You can also install everything yourself if you want more control, read the scripts to see the steps that have to be done.
           </p>
 
           <p>
@@ -111,18 +113,95 @@ cd mwissues-nodejs-server</pre>
 
           <p>
             A service will be installed, the server will start automatically when the machine is turned on.<br>
-            If you want to customize the configuration, edit the file <code>config.json</code> with your favorite text editor, then run the following command to restart the server.
+            <b>Important!</b> Take the time to consult the <a href="#server-config">Server configuration</a> section below.<br>
+            When you want to customize the configuration, edit the file <code>config.json</code> with your favorite text editor, then run the following command to restart the server.
           </p>
 <pre>sudo service mwissues restart</pre>
 
+
           <h3 id="setup-windows">Setup on Windows</h3>
           <p>
-            TODO
+            In this section, you will learn how to install MwIssues NodeJs server on a Windows machine.<br>
+            First, we have to manually download and install MySql and NodeJs.
           </p>
+
+          <p>
+            Before installing any dependency, download the <a href="https://github.com/InfiniteRam/mwissues-nodejs-server">MwIssues server from Github</a>.<br>
+            You can either clone it using Git or download it as a Zip file.
+          </p>
+
+          <p>
+            For MySql, it is recommended to use the <a href="http://dev.mysql.com/downloads/installer/">MySql Installer</a>.
+            <ul>
+              <li>The only required component is MySql Server, but installing MySql Workbench is also recommended.</li>
+              <li>Choose a strong root password and store it in a secure place.</li>
+              <li>You should enable "Start the MySql Server at System Startup".</li>
+            </ul>
+          </p>
+
+          <p>
+            Once MySql is installed, we can create the database and the user.
+          </p>
+          <ul>
+            <li>Click on the <code>Create a new schema</code> button in the toolbar.</li>
+            <li>Enter the name <code>mwissues</code> and hit <code>Apply</code>.</li>
+            <li>Click on <code>File > Run Sql Script</code> and select the file <code>mwissues-nodejs-server/tools/issues-mysql.sql</code>.</li>
+            <li>Select <code>mwissues</code> in <code>Default Schema Name</code> and hit <code>Run</code>.</li>
+          </ul>
+          <p>
+            Now the database is ready, but we will also create a new MySql user that will only have access to the issues.
+          </p>
+          <ul>
+            <li>Select <code>Users and Privileges</code> in the sidebar and click <code>Add Account</code>.</li>
+            <li>Enter <code>mwissues</code> for the login name and <code>localhost</code> for <code>Limits to Hosts Matching</code>.</li>
+            <li>Choose a strong password different from the root password, and store it.</li>
+            <li>In the <code>Schema Privileges</code> tab, use <code>Add Entry</code> and select <code>mwissues</code> schema, then click on <code>Select ALL</code></li>
+            <li>Hit <code>Apply</code> to save your new user.</li>
+          </ul>
+
+          <p>
+            NodeJs is easy to install, download and run the Windows installer on the <a href="https://nodejs.org">NodeJs website</a>.<br>
+            You can choose either the latest or the LTS version.
+          </p>
+
+          <p>
+            With your preferred text editor, open <code>mwissues-nodejs-server/config.json</code> and enter the password of the MySql user <code>mwissues</code> in the <code>password</code> field.<br>
+            <b>Important!</b> Take the time to consult the <a href="#server-config">Server configuration</a> section below.
+          </p>
+
+          <p>
+            Open a command prompt in the folder <code>mwissues-nodejs-server</code> (you can shift + right click in the folder and choose <code>Open command window here</code>).<br>
+            Run the following command to download the dependencies.
+          </p>
+<pre>npm update</pre>
+
+          <p>
+            Now the server is finally ready. You can start it using the following command.
+          </p>
+<pre>node index.js</pre>
+
+          <p>
+            To ease your life, yous should configure Windows to run the server on System Startup, but this is not covered by this guide.<br>
+            When updating the <code>config.json</code> configuration file, remember that you must restart the server.
+          </p>
+
+
+          <h3 id="testing">Testing</h3>
+          <p>
+            To test your server, try to access to the web interface and login using a valid user name and API key.<br>
+            Enter the URL corresponding to your server in your browser:
+          </p>
+<pre>http://server-address:port/
+Example for local server: http://localhost:3000/</pre>
+          <p>
+            You should also try to access the server from a different machine to make sure that the server is accessible by your team members.
+          </p>
+
 
           <h3 id="server-config">Server configuration</h3>
           <p>
-            The server configuration can be modified by editing the <code>config.json</code> file. You have to restart the server after modifying this file.
+            The server configuration can be modified by editing the <code>config.json</code> file. You have to restart the server after modifying this file.<br>
+            When installing a new server, the most important part is to edit the authentication parameters, you should never use the default API keys. Authentication models will be explained in this section.
           </p>
 
 
@@ -169,12 +248,13 @@ cd mwissues-nodejs-server</pre>
             The special key <code>anonymous</code> can be used to give some permissions to anonymous users.
           </p>
           <p>
-            <b>Important!</b> API keys are not passwords, and as such they are not automatically encrypted. API keys should be generated and should not be re-used for another purpose. You should not use the default API keys either.
+            <b>Important!</b> API keys are not passwords, and as such they are not automatically encrypted. API keys should be generated and should not be re-used for another purpose. You should never use the default API keys either.
           </p>
           <p>
             You can configure API keys the way that suits you the best.<br>
             For example, you can use one administrator key, one key shared by the development team with view, create and update access, and one key for the in-game reporter that can only create issues.
           </p>
+
 
           <h3 id="security">Increasing security</h3>
           <p>

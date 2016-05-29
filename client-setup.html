@@ -67,7 +67,8 @@
         <div class="col-md-3 col-md-push-9">
           <h2>Navigation</h2>
           <ul class="nav">
-            <li><a href="#">Link</a></li>
+            <li><a href="#project">Project setup</a></li>
+            <li><a href="#reporter">Reporter setup</a></li>
           </ul>
         </div>
 
@@ -76,12 +77,96 @@
             <h1>Client setup guide</h1>
           </div>
           <p>
-            This page will guide you into integrating MwIssues into your existing project.
+            This page will guide you into integrating MwIssues into your existing project.<br>
+            The MwIssues server <em>must</em> be installed, or you will not be able to use this extension. To install the server, please consult <a href="server-setup.html"></a>.<br>
+            The server is free and open source, you can install it before purchasing the editor extension.
           </p>
 
-          <h3>TODO</h3>
+
+          <h3 id="project">Project setup</h3>
           <p>
-            TODO
+            First, import the package in your project.<br>
+            All the assets and scripts are located in the <code>MwIssues</code> folder. It is not recommended to move this folder. If you really want to move it, please update the <code>MwIssues/Editor/ConfigEditor</code> script with the new base path.<br>
+            Once you have imported the extension, open the following asset in your Inspector.
+          </p>
+          <pre>Assets/MwIssues/Config.asset</pre>
+          <img class="well well-sm" src="img/config.png" alt="Project config" />
+          <p>
+            While the project settings are shared to everyone using the project, the user settings are saved locally, please read the <a href="user-guide.html#user-settings">User settings</a> guide for more informations.<br>
+            Enter the URL of your server in the <code>Server Host</code> field, and hit the <code>Reload</code> button to make sure the changes are registered.<br>
+            In order to test your configuration, you should also enter a valid user name and API key.<br>
+            Now, you can open the Issue Manager from Unity's menu bar:
+          </p>
+          <pre>Window > Issue Manager</pre>
+          <img class="well well-sm" src="img/connect.png" alt="Connect screen" />
+          <p>
+            Press the connect button, and if everything is correctly configured the main interface should appear.<br>
+            If you get an error message, please consult the <a href="troubleshooting.html">Troubleshooting</a> page.
+          </p>
+
+
+          <h3 id="reporter">Reporter setup</h3>
+          <p>
+            If you want your play tester to be able to report issues from within the game, you have to use the <code>MwIssues/Reporter</code> prefab.<br>
+            First, drag and drop it in your scene.
+          </p>
+          <img class="well well-sm" src="img/reporter-cfg.png" alt="Reporter config" />
+
+          <h4>Reporter script</h4>
+          <p>
+            The Reporter script is the main script controlling the behaviour of the reporter.
+          </p>
+          <ul>
+            <li><b>Mw Issues Config:</b> Config script, containing the server URL. It points to <code>MwIssues/Config</code> by default and should not be changed.</li>
+            <li><b>Show Report Button:</b> Check this box if you want your users to be able to report issues by clicking on a button on screen.</li>
+            <li><b>Report Key:</b> Choose a key that, when pressed, will start a report. Set to None to disable.</li>
+            <li><b>Escape Key:</b> Choose a key that, when pressed, will cancel the current report. Set to None to disable.</li>
+            <li><b>Report Camera:</b> Camera that will be used to take the screenshots. If unset, it will automatically select the main camera.</li>
+
+            <li><b>Username Env Var:</b> Select the user name of the reporter from this environment variable. Use the next parameter to override.</li>
+            <li><b>Username Override:</b> If set, the previous parameter is ignored and the value of this field is used for the user name.</li>
+
+            <li><b>Apikey Env Var:</b> Select the API key from this environment variable. Use the next parameter to override.</li>
+            <li><b>Apikey Override:</b> If set, the previous parameter is ignored and the value of this field is used for the API key.</li>
+
+            <li><b>Use Mouse Position:</b> If checked, the mouse position is used to trace the issue when the Report Key is pressed.</li>
+            <li><b>Use Physics Raycast:</b> If checked, a physics raycast is performed instead of a graphic raycast.</li>
+            <li><b>Raycast Layer Mask:</b> Mask used by the physics raycast when enabled.</li>
+            <li><b>State:</b> State of the issues created from the reporter.</li>
+            <li><b>Force Category:</b> If checked, the user cannot select a category in the reporter.</li>
+            <li><b>Forced Category:</b> If the previous parameter is checked, issues created from the reporter will have this category.</li>
+            <li><b>Screeshot Mode:</b> Select between allow the user to choose and always enable or disable the screenshot.</li>
+          </ul>
+
+          <p>
+            User name and API keys can be set using an environment variable, allowing you to have multiple play testers with different report name without having to build a new version of the game for each one.<br>
+            <code>USERNAME</code> is Windows' variable for the actual user, and <code>USER</code> can be used on unix systems.<br>
+            For testing purposes, we recommend using the Username Override and Apikey Override parameters.<br>
+            Please note that some platforms, such as Android, do not work well with environment variables. In that case, you should use the Override parameters, they can also be filled programmatically from another script.
+          </p>
+
+          <p>
+            By default, MwIssues is using a graphic raycast to check where in the world the user clicked. This raycast uses the depth buffer, and may not work on every platform, in that case the physics raycast is automatically used as a fallback.
+          </p>
+
+          <h4>Timescale pause script</h4>
+          <p>
+            This script pauses the game when the reporter is opened by setting the timescale to zero.<br>
+            This is a very simple script, and you can easily create your own pause system by copying and editing this script.
+          </p>
+
+          <h4>Version in description script</h4>
+          <p>
+            This script adds automatically to the description of the issue the most common version numbers.<br>
+            This is also a very simple script, and you can edit it to automatically add any other information to the issues reported.
+          </p>
+
+          <h4>Edit the reporter interface</h4>
+          <img class="well well-sm" src="img/reporter.png" alt="Reporter" />
+          <p>
+            The reporter interface is a Canvas that can be modified to fit your needs.<br>
+            For example, if the report button overlap with another UI element, you can move it: <code>Reporter > Canvas > Picker Button</code>.<br>
+            In the picture above, the <code>Canvas Scaler</code> has been configured to work with a small screen.
           </p>
         </div>
       </div>
