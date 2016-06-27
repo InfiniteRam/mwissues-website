@@ -2,6 +2,10 @@
  * Copyright (c) 2016 Bastien Brunnenstein
  */
 
+body {
+  line-height: 1.6em;
+}
+
 .mwissues-logo {
   display: inline-block;
   width: 32px;
@@ -25,6 +29,6 @@ footer {
 	margin: auto;
 }
 
-h3 {
+h3, h4 {
   margin-top: 1.5em;
 }
